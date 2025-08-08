@@ -46,7 +46,7 @@ app.use('/lists', authMiddlewear, listsRouter);
 app.use('/videos-in-list', authMiddlewear, videosInListRouter);
 app.use('/new-video', authMiddlewear, newVideoRouter);
 app.use('*', (req, res) => {
-  res.sendFile(`${__dirname}/angular_app/index.html`);
+  res.sendFile(`${__dirname}/dummy/index.html`);
 });
 
 app.use(function (err, req, res, next) {
