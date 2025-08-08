@@ -2,7 +2,7 @@ const db = require('../db');
 
 const addVideoToList = async (videoID, listID, userID) => {
   const res = await db.get().query('INSERT INTO videos_lists (videoID, listID, userID, date_last_modified) VALUES (?, ?, ?, NOW())', [videoID, listID, userID]);
-  return res.inserId;
+  return res[0].insertId;
 };
 
 const getAllVideosFromList = async (listID, userID) => {
