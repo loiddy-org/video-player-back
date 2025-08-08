@@ -5,10 +5,10 @@ const videosInListModel = require('./../models/videos-in-list');
 exports.handleGetNewVideo = async (youtubeID, userID) => {
   let video = await getVideoDataFromDB(youtubeID);
   if (video) {
-    const inListData = await getVideoInListData(video.videoID, userID);
+    const inListData = (await getVideoInListData(video.videoID, userID)) || { histID: null, inLists: [] };
     if (!inListData.histID) {
       inListData.histID = await videosInListModel.addVideoToList(video.videoID, 1, userID);
-      inListData.histID.push(1);
+      inListData.inLists.push(1);
     }
     return {
       ...inListData,
