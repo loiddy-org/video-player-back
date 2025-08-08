@@ -24,7 +24,7 @@ app.use(
         'script-src': ["'self'"],
         'script-src-elem': ["'self'", 'kit.fontawesome.com', 'www.youtube.com', 'apis.google.com'],
         'img-src': ["'self'", 'https://*.ytimg.com'],
-        'frame-src': ["'self'", 'www.youtube-nocookie.com', 'reliable-proton-443019-j8.firebaseapp.com'],
+        'frame-src': ["'self'", 'www.youtube-nocookie.com', 'strong-park-451920-r0.firebaseapp.com'],
         'connect-src': ["'self'", 'ka-f.fontawesome.com', 'identitytoolkit.googleapis.com', 'securetoken.googleapis.com'],
       },
     },

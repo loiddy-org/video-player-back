@@ -6,8 +6,8 @@ let app = null;
 
 const initFirebase = () => {
   const firebaseConfig = {
-    apiKey: FIREBASE_API_KEY,
-    authDomain: FIREBASE_AUTH_DOMAIN,
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
   };
   app = initializeApp(firebaseConfig);
 };
