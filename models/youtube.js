@@ -1,8 +1,9 @@
 const axios = require('axios');
-require('dotenv').config();
+const ssmParams = require('../ssm-params');
 
 const getVideoData = async (youtubeID) => {
-  const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${youtubeID}&key=${process.env.YOUTUBE_API_KEY}`;
+  const params = await ssmParams.get();
+  const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${youtubeID}&key=${params.YOUTUBE_API_KEY}`;
 
   try {
     const response = await axios.get(url);

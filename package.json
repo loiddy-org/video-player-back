@@ -7,6 +7,7 @@
     "startdev": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@aws-sdk/client-ssm": "^3.864.0",
     "axios": "^1.7.7",
     "compression": "^1.7.5",
     "cookie-parser": "^1.4.7",

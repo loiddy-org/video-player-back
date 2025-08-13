@@ -1,21 +1,21 @@
 const mysql = require('mysql2/promise');
-require('dotenv').config();
+const ssmParams = require('./ssm-params');
 
 var pool = null;
 
-const getConfig = () => {
+const getConfig = async () => {
+  const params = await ssmParams.get();
   return {
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_NAME,
-    port: process.env.DATABASE_PORT,
+    host: params.HOST,
+    user: params.USER,
+    password: params.PASSWORD,
+    database: params.DATABASE,
+    port: params.PORT,
   };
 };
 
 exports.connect = async function (done) {
-  let dbConfig;
-  dbConfig = getConfig();
+  let dbConfig = await getConfig();
   pool = mysql.createPool(dbConfig);
 };
 

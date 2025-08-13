@@ -3,10 +3,10 @@ var router = express.Router();
 var listsModel = require('./../models/lists');
 
 router.get('/', async (req, res, next) => {
-  console.log('😘 getting lists, uid: ', req.user.uid);
+  //console.log('😘 getting lists, uid: ', req.user.uid);
   try {
     const rows = await listsModel.getAll(req.user.uid);
-    console.log('💜 got the lists', rows);
+    //console.log('💜 got the lists', rows);
     res.json(rows);
   } catch (error) {
     console.log('🤬', error);
