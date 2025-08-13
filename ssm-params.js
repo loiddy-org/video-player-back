@@ -31,4 +31,5 @@ async function getSSMParametersByPath(region, path) {
 exports.get = async function () {
   if (params) return params;
   params = await getSSMParametersByPath('eu-west-1', '/video-player/');
+  return params;
 };
