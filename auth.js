@@ -1,4 +1,4 @@
-const { initializeApp } = require('firebase-admin/app');
+const { initializeApp, cert } = require('firebase-admin/app');
 const { getAuth } = require('firebase-admin/auth');
 const ssmParams = require('./ssm-params');
 
@@ -6,11 +6,9 @@ let app = null;
 
 const initFirebase = async () => {
   const params = await ssmParams.get();
-  const firebaseConfig = {
-    apiKey: params.FIREBASE_API_KEY,
-    authDomain: params.FIREBASE_AUTH_DOMAIN,
-  };
-  app = initializeApp(firebaseConfig);
+  app = initializeApp({
+    credential: cert(JSON.parse(params.FIREBASE_SERVICE_ACCOUNT)),
+  });
 };
 
 exports.authMiddlewear = async (req, res, next) => {
