@@ -25,4 +25,4 @@ jobs:
         run: |
           aws ssm start-automation-execution \
             --document-name "video-player-rest-api-golden-ami-automation-document" \
-            --parameters "AutomationAssumeRole=arn:aws:iam::617207029622:role/RESTAPIGoldenAMIAutomationRole"
+            --parameters "AutomationAssumeRole=arn:aws:iam::617207029622:role/video-player-rest-api-golden-ami-automation-role"
