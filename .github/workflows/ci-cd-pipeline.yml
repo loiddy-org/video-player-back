@@ -1,4 +1,4 @@
-name: CI/CD Pipeline to S3 Video Player Artifacts
+name: CI/CD Pipeline to Create REST API Golden AMI
 
 on:
   push:
@@ -6,34 +6,22 @@ on:
       - main
 
 jobs:
-  build_and_deploy:
+  create_golden_ami:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
-
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'lts/*'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Create zip file
-        run: |
-          zip -r video-player-back.zip . -x ".git/*" ".github/*" ".gitignore"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::617207029622:role/github-actions-s3-video-player-artifacts-uploader-role
+          role-to-assume: arn:aws:iam::617207029622:role/github-v-p-start-rest-api-golden-ami-automation-execution
           aws-region: eu-west-1
 
-      - name: Upload zip to S3 Video Player Artifacts
+      - name: Start SSM Automation to Create AMI
         run: |
-          aws s3 cp video-player-back.zip s3://video-player-architecture-automation/artifacts/video-player-back.zip
+          aws ssm start-automation-execution \
+            --document-name "video-player-rest-api-golden-ami-automation-document" \
